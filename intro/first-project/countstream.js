@@ -11,7 +11,9 @@ function CountStream(matchText, options) {
   this.matcher = new RegExp(matchText, 'ig'); //<co id="callout-intro-countstream-2" />
 }
 
+var count = 0;
 CountStream.prototype._write = function(chunk, encoding, cb) {
+	console.log(++count)
   var matches = chunk.toString().match(this.matcher); //<co id="callout-intro-countstream-3" />
   if (matches) {
     this.count += matches.length;
