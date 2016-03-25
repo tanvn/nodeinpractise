@@ -1,0 +1,33 @@
+/**
+ * http://usejsdoc.org/
+ */
+var args = {
+	'-h' : displayHelp,
+	'-r' : readFile
+};
+function displayHelp() {
+	console.log('Argument processor:', args);
+}
+
+function readFile(file) {
+	if (file && file.length) {
+		console.log('Reading:', file);
+		require('fs').createReadStream(file).pipe(process.stdout);
+	} else {
+		console.error('A file must be provided with the -r option');
+		process.exit(1);
+	}
+}
+
+if (process.argv.length > 0) {
+	console.log(process.argv)
+	process.argv.forEach(function(arg, index) {
+		if (args[arg]) {
+			console.log(args[arg])
+			console.log(process.argv.slice(index + 1))
+			console.log(index + " : " + arg)
+			args[arg].apply(this, process.argv.slice(index + 1));
+		}
+
+	});
+}
