@@ -5,19 +5,20 @@ var fs = require("fs");
 var emitter = new require('events').EventEmitter();
 
 setTimeout(function() {
-	console.log('TIMEOUT 1');
+	console.log('TIMEOUT 0');
 }, 0);
 setTimeout(function() {
-	console.log('TIMEOUT 2');
+	console.log('TIMEOUT 1');
 }, 1);
 setTimeout(function() {
-	console.log('TIMEOUT 100');
+	console.log('TIMEOUT 2');
 }, 2);
 setImmediate(function() {
 	console.log("IMMEDIATE 1");
 
 	for (var i = 1; i < 10; i++) {
 		setImmediate((function(i) {
+			console.log("set immediate here...")
 			return function() {
 				console.log("setImmediate " + i)
 			};
@@ -29,7 +30,7 @@ setImmediate(function() {
 process.nextTick(function() {
 	console.log("NEXTTICK 1");
 	process.nextTick(function() {
-		for (var i = 2; i < 100; i++) {
+		for (var i = 2; i < 10; i++) {
 			process.nextTick((function(i) {
 				return function() {
 					console.log("NEXTTICK " + i)
@@ -40,6 +41,7 @@ process.nextTick(function() {
 });
 
 setTimeout(function() {
+	console.log("set Timeout here")
 	setTimeout(function() {
 		console.log('TIMEOUT 10')
 	}, 0);
@@ -64,6 +66,7 @@ function readFileIfRequired(cb) {
 	}
 }
 readFileIfRequired(function(err, data) {
+	console.log(data);
 	console.log('1. Length:', data.length);
 	readFileIfRequired(function(err, data2) {
 		console.log('2. Length:', data2.length);
