@@ -1,0 +1,4 @@
+{"firstName":"John", "lastName":"Doe", "position" : 0 , "letter" : "A"}
+{"position" : 15 , "letter" : "TV", "class" : "4F", "name" : "Vu Nhat Tan", "job" : "developer" }
+{"position" : 16 , "letter" : "TL","class" : "4F", "name" : "Thang Le", "work_place" : "Ha Noi"}
+{"position" : 10 , "letter" : "HN","class" : "4F", "name" : "Huy1", "work_place" : "Ha Noi"}
